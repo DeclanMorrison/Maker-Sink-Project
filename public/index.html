@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./stylesheet.css">
+  <title>S.H.I.T</title>
+</head>
+<body class="bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="jumbotron">
+          <h1 class="display-1 text-center">S.H.I.T</h1>
+          <p class="lead text-center">This is the Web Interface for the State-of-the-art Hand Interactive Tap</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <input class="hotTap" type="text" value="0">
+        <h1 class="hothothot">Hot</h1>
+      </div>
+      <div class="col-6">
+        <input class="coldTap" type="text" value="0">
+        <h1 class="coldcoldcold">Cold</h1>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+  <script src="./jQuery-knob.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    $(() => {
+      $(".hotTap").knob({
+        angleArc: 200,  
+        angleOffset: 260,
+        readOnly: true,
+        width: "400",
+        height: "400",
+        bgColor: "rgba(255, 255, 255, .05)",
+        fgColor: "#f44a4a",
+        skin: "tron"
+      });
+
+      $(".coldTap").knob({
+        angleArc: 200,
+        angleOffset: 260,
+        readOnly: true,
+        width: "400",
+        height: "400",
+        bgColor: "rgba(255, 255, 255, .05)",
+        fgColor: "#00a0dc",
+        skin: "tron"
+      });
+
+      $("input.hotTap").parent("div").css({
+        position: "absolute",
+        left: "10%"
+      });
+
+      $("input.coldTap").parent("div").css({
+        position: "absolute",
+        right: "10%"
+      });
+
+      const socket = io();
+
+      socket.on("update", (data) => {
+        console.log(data);
+        $(".hotTap").val(data[0]).trigger("change");
+        $(".coldTap").val(data[1]).trigger("change");
+      });
+    });
+  </script>
+</body>
+</html>

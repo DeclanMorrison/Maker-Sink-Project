@@ -1,0 +1,36 @@
+.bg{
+  /* background-image: url(https://78.media.tumblr.com/93691a57a962bd0dbe9a2daca0c72788/tumblr_n9orwyTSaG1r2geqjo1_500.gif); */
+  background-image: url(http://i.imgur.com/Y1HEtTJ.gif);
+  background-size: contain;
+  height: 100vh;
+}
+
+.jumbotron{
+  background-color: #323a46DD
+}
+
+.text-red{
+  color: #f44a4a;
+}
+
+.text-blue{
+  color: #00a0dc;
+}
+
+.hothothot {
+  position: absolute;
+  left: -500px;
+  transform: rotate(45deg);
+  color: #f44a4a66;
+  font-size: 3000%;
+  font-weight: bolder;
+}
+
+.coldcoldcold {
+  position: absolute;
+  right: -500px;
+  transform: rotate(-45deg);
+  color: #00a0dc66;
+  font-size: 3000%;
+  font-weight: bolder;
+}
